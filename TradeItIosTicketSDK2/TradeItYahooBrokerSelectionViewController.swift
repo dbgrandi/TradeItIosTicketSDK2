@@ -1,6 +1,6 @@
 import UIKit
 import MBProgressHUD
-import SafariServices
+import AuthenticationServices
 
 class TradeItYahooBrokerSelectionViewController: TradeItYahooViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var brokerTable: UITableView!
@@ -10,6 +10,7 @@ class TradeItYahooBrokerSelectionViewController: TradeItYahooViewController, UIT
     private var brokers: [TradeItBroker] = []
     private var featuredBrokers: [TradeItBroker] = []
     internal var oAuthCallbackUrl: URL?
+    private var webAuthSession: ASWebAuthenticationSession? = nil
 
     weak var delegate: YahooLauncherDelegate?
 
@@ -69,30 +70,34 @@ class TradeItYahooBrokerSelectionViewController: TradeItYahooViewController, UIT
     }
 
     private func launchOAuth(forBroker broker: TradeItBroker) {
-        guard let brokerShortName = broker.brokerShortName else {
-            return
-        }
+        guard let brokerShortName = broker.brokerShortName,
+            let callbackUrl = self.oAuthCallbackUrl,
+            let activityView = self.activityView else  { return }
 
-        self.activityView?.label.text = "Launching broker linking"
-        self.activityView?.show(animated: true)
+        activityView.label.text = "Launching broker linking"
+        activityView.show(animated: true)
 
         self.fireViewEventNotification(view: .brokerOAuth, title: "OAuth \(brokerShortName)")
 
         TradeItSDK.linkedBrokerManager.getOAuthLoginPopupUrl(
             withBroker: brokerShortName,
-            oAuthCallbackUrl: self.oAuthCallbackUrl!,
+            oAuthCallbackUrl: callbackUrl,
             onSuccess: { url in
-                self.activityView?.hide(animated: true)
-                let safariViewController = SFSafariViewController(url: url)
-                self.present(safariViewController, animated: true, completion: nil)
-            },
+                activityView.hide(animated: true)
+                self.webAuthSession = ASWebAuthenticationSession.init(url: url, callbackURLScheme: callbackUrl.absoluteString, completionHandler: { (callBack:URL?, error:Error?) in
+                    guard error == nil, let successURL = callBack else { return }
+                    NotificationCenter.default.post(name: TradeItNotification.Name.didReceiveOAuthCallback, object: nil, userInfo: [TradeItNotification.UserInfoKey.callbackUrl: successURL])
+                })
+
+                self.webAuthSession?.start()
+        },
             onFailure: { errorResult in
                 self.alertManager.showError(
                     errorResult,
                     onViewController: self
                 )
-                self.activityView?.hide(animated: true)
-            }
+                activityView.hide(animated: true)
+        }
         )
     }
 

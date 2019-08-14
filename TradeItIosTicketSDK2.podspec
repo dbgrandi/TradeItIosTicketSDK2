@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/tradingticket/TradeItIosTicketSDK2.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/tradeit'
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '12.0'
 
   s.source_files = 'TradeItIosTicketSDK2/**/*.{swift,h,m}',
     'TradeItIosEmsApi/**/*.{swift,h,m}'

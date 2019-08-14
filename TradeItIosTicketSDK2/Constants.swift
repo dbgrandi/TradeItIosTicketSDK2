@@ -4,6 +4,7 @@
     @objc public static let nameAlertShown = TradeItNotification.Name.alertShown
     @objc public static let nameDidLink = TradeItNotification.Name.didLink
     @objc public static let nameDidUnlink = TradeItNotification.Name.didUnlink
+    @objc public static let nameDidRecieveOAuthCallback = TradeItNotification.Name.didReceiveOAuthCallback
     @objc public static let nameButtonTapped = TradeItNotification.Name.buttonTapped
     @objc public static let nameDidSelectRow = TradeItNotification.Name.didSelectRow
 
@@ -16,6 +17,7 @@
     @objc public static let userInfoKeyButton = TradeItNotification.UserInfoKey.button.rawValue
     @objc public static let userInfoKeyRowType = TradeItNotification.UserInfoKey.rowType.rawValue
     @objc public static let userInfoKeyRowLabel = TradeItNotification.UserInfoKey.rowType.rawValue
+    @objc public static let userInfoKeyCallbackUrl = TradeItNotification.UserInfoKey.callbackUrl.rawValue
 
     // MARK: Buttons
     @objc public static let buttonPreviewOrder = TradeItNotification.Button.previewOrder.rawValue
@@ -47,6 +49,7 @@ public struct TradeItNotification {
     public struct Name {
         public static let alertShown = NSNotification.Name(rawValue: "alertShown")
         public static let viewDidAppear = NSNotification.Name(rawValue: "viewDidAppear")
+        public static let didReceiveOAuthCallback = NSNotification.Name(rawValue: "TradeItSDKDidReceiveOAuthCallback")
         public static let didLink = NSNotification.Name(rawValue: "TradeItSDKDidLink")
         public static let didUnlink = NSNotification.Name(rawValue: "TradeItSDKDidUnlink")
         public static let buttonTapped = NSNotification.Name(rawValue: "buttonTapped")
@@ -62,6 +65,7 @@ public struct TradeItNotification {
         case button
         case rowType
         case rowLabel
+        case callbackUrl
     }
 
     public enum Button: String {
