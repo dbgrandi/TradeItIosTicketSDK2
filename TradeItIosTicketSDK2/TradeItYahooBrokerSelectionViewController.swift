@@ -86,7 +86,7 @@ class TradeItYahooBrokerSelectionViewController: TradeItYahooViewController, UIT
                 activityView.hide(animated: true)
                 self.webAuthSession = ASWebAuthenticationSession.init(url: url, callbackURLScheme: callbackUrl.absoluteString, completionHandler: { (callBack:URL?, error:Error?) in
                     guard error == nil, let successURL = callBack else { return }
-                    NotificationCenter.default.post(name: TradeItNotification.Name.didReceiveOAuthCallback, object: nil, userInfo: [TradeItNotification.UserInfoKey.callbackUrl: successURL])
+                    NotificationCenter.default.post(name: TradeItNotification.Name.didReceiveOAuthCallback, object: nil, userInfo: [TradeItNotification.UserInfoKey.callbackUrl.rawValue: successURL])
                 })
 
                 self.webAuthSession?.start()
