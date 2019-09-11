@@ -82,14 +82,19 @@ class TradeItYahooBrokerSelectionViewController: TradeItYahooViewController, UIT
         TradeItSDK.linkedBrokerManager.getOAuthLoginPopupUrl(
             withBroker: brokerShortName,
             oAuthCallbackUrl: callbackUrl,
-            onSuccess: { url in
+            onSuccess: {[weak self] url in
                 activityView.hide(animated: true)
-                self.webAuthSession = ASWebAuthenticationSession.init(url: url, callbackURLScheme: callbackUrl.absoluteString, completionHandler: { (callBack:URL?, error:Error?) in
-                    guard error == nil, let successURL = callBack else { return }
-                    NotificationCenter.default.post(name: TradeItNotification.Name.didReceiveOAuthCallback, object: nil, userInfo: [TradeItNotification.UserInfoKey.callbackUrl.rawValue: successURL])
-                })
+                if let self = self {
+                    self.webAuthSession = ASWebAuthenticationSession.init(url: url, callbackURLScheme: callbackUrl.absoluteString, completionHandler: { (callBack:URL?, error:Error?) in
+                        guard error == nil, let successURL = callBack else { return }
+                        NotificationCenter.default.post(name: TradeItNotification.Name.didReceiveOAuthCallback, object: nil, userInfo: [TradeItNotification.UserInfoKey.callbackUrl.rawValue: successURL])
+                    })
 
-                self.webAuthSession?.start()
+                    if #available(iOS 13.0, *) {
+                        self.webAuthSession?.presentationContextProvider = self
+                    }
+                    self.webAuthSession?.start()
+                }
         },
             onFailure: { errorResult in
                 self.alertManager.showError(
@@ -206,5 +211,11 @@ class TradeItYahooBrokerSelectionViewController: TradeItYahooViewController, UIT
         cell.textLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.medium)
 
         return cell
+    }
+}
+
+extension TradeItYahooBrokerSelectionViewController: ASWebAuthenticationPresentationContextProviding {
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        return view.window ?? UIWindow() // I'm not sure what happens if we return a blank UIWindow object but our view *should& always have a valid window at this point
     }
 }
