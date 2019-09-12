@@ -7,7 +7,7 @@ import UIKit
 class DefaultActivityIndicatorFactory: ActivityIndicatorFactory {
     func build(frame: CGRect) -> UIView {
         let view = UIActivityIndicatorView(frame: frame)
-        view.color = UIColor.gray
+        view.color = UIColor(named: "indicator")
         view.startAnimating()
         return view
     }

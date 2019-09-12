@@ -13,12 +13,12 @@ class TradeItYahooNavigationController: UINavigationController {
     }
 
     private func setupFuji() {
-        self.navigationBar.isTranslucent = false
-        self.navigationBar.barTintColor = .white
-        self.navigationBar.tintColor = UIColor(red: 24/255, green: 143/255, blue: 1, alpha: 1)
+        self.navigationBar.barTintColor = UIColor(named: "overlayChromeBackground")
+        self.navigationBar.tintColor = UIColor(named: "button")
+        self.navigationBar.titleTextAttributes = [ NSAttributedString.Key.foregroundColor: UIColor(named: "primaryText") ]
 
-        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
-        self.navigationBar.titleTextAttributes = textAttributes
+        self.navigationBar.isTranslucent = false
+        self.navigationBar.barStyle = .default
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

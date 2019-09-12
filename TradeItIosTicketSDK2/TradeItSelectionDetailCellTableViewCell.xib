@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,38 +14,39 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4j4-5P-Uig" id="HOb-KJ-jNO">
-                <rect key="frame" x="0.0" y="0.0" width="341" height="49.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="347.5" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZd-6A-lOH">
-                        <rect key="frame" x="78" y="23" width="261" height="14"/>
+                        <rect key="frame" x="78" y="23" width="268.5" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" name="primaryText"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHV-0M-nvi">
-                        <rect key="frame" x="78" y="11" width="261" height="15"/>
+                        <rect key="frame" x="78" y="11" width="268.5" height="15"/>
                         <accessibility key="accessibilityConfiguration">
                             <accessibilityTraits key="traits" button="YES" staticText="YES"/>
                         </accessibility>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
-                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" name="button"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="740" text="Alt title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fiL-Ey-Ywz">
-                        <rect key="frame" x="16" y="14" width="54" height="21"/>
+                        <rect key="frame" x="16" y="14.5" width="54" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" name="primaryText"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="cyY-5g-5BP">
-                        <rect key="frame" x="16" y="10" width="150" height="28"/>
+                        <rect key="frame" x="15" y="11" width="150" height="28"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="150" id="6Tg-Pw-nL9"/>
                             <constraint firstAttribute="height" constant="28" id="Xdq-N0-R7W"/>
                         </constraints>
                     </imageView>
                 </subviews>
+                <color key="backgroundColor" name="overlayLevelTwoBackground"/>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="hZd-6A-lOH" secondAttribute="bottom" constant="2" id="1Ft-Qx-DBx"/>
                     <constraint firstAttribute="trailingMargin" secondItem="hZd-6A-lOH" secondAttribute="trailing" constant="-6" id="6gc-yz-UZD"/>
@@ -63,6 +61,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="hHV-0M-nvi" secondAttribute="trailing" constant="-6" id="ybk-rA-Guc"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" name="overlayLevelTwoBackground"/>
             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="altTitle" destination="fiL-Ey-Ywz" id="gj6-HA-lj9"/>
@@ -74,4 +73,15 @@
             <point key="canvasLocation" x="24.5" y="52"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <namedColor name="button">
+            <color red="0.11372549019607843" green="0.68627450980392157" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="overlayLevelTwoBackground">
+            <color red="0.11372549019607843" green="0.13333333333333333" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primaryText">
+            <color red="0.96078431372549022" green="0.97254901960784312" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

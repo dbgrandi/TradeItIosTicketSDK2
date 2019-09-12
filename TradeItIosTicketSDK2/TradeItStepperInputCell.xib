@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,12 +14,12 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o7B-de-2u2" id="tvI-cQ-NXT">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter value" textAlignment="right" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="lO0-UH-R3i" customClass="TradeItNumberField" customModule="TradeItIosTicketSDK2" customModuleProvider="target">
-                        <rect key="frame" x="217" y="8" width="120" height="33"/>
-                        <color key="backgroundColor" red="0.90588235289999997" green="0.95294117649999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="210" y="11" width="120" height="28"/>
+                        <color key="backgroundColor" name="overlayLevelOneBackground"/>
                         <accessibility key="accessibilityConfiguration" identifier="Stepper"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="FjQ-2S-PHE"/>
@@ -33,21 +32,26 @@
                         </connections>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Af1-IK-2sv">
-                        <rect key="frame" x="187" y="8" width="30" height="33"/>
+                        <rect key="frame" x="180" y="11" width="30" height="28"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <state key="normal" title="-"/>
+                        <state key="normal" title="-">
+                            <color key="titleColor" name="button"/>
+                        </state>
                         <connections>
                             <action selector="decrementButtonTapped:" destination="o7B-de-2u2" eventType="touchUpInside" id="SFd-H3-Q6c"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fjz-Dr-coa">
-                        <rect key="frame" x="337" y="8" width="30" height="33"/>
-                        <state key="normal" title="+"/>
+                        <rect key="frame" x="330" y="11" width="30" height="28"/>
+                        <state key="normal" title="+">
+                            <color key="titleColor" name="button"/>
+                        </state>
                         <connections>
                             <action selector="incrementButtonTapped:" destination="o7B-de-2u2" eventType="touchUpInside" id="Kdg-NS-XMC"/>
                         </connections>
                     </button>
                 </subviews>
+                <color key="backgroundColor" name="overlayLevelTwoBackground"/>
                 <constraints>
                     <constraint firstItem="fjz-Dr-coa" firstAttribute="leading" secondItem="lO0-UH-R3i" secondAttribute="trailing" id="69R-Pq-kV9"/>
                     <constraint firstAttribute="trailingMargin" secondItem="fjz-Dr-coa" secondAttribute="trailing" id="9JT-xj-jH5"/>
@@ -60,11 +64,24 @@
                     <constraint firstItem="fjz-Dr-coa" firstAttribute="height" secondItem="lO0-UH-R3i" secondAttribute="height" id="z0R-1F-NZl"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" name="overlayLevelTwoBackground"/>
             <connections>
                 <outlet property="decrementButton" destination="Af1-IK-2sv" id="B1O-IQ-u1t"/>
                 <outlet property="incrementButton" destination="fjz-Dr-coa" id="ZK9-wC-bd8"/>
                 <outlet property="textField" destination="lO0-UH-R3i" id="ngv-rR-7Yw"/>
             </connections>
+            <point key="canvasLocation" x="138" y="154"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <namedColor name="button">
+            <color red="0.11372549019607843" green="0.68627450980392157" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="overlayLevelOneBackground">
+            <color red="0.13725490196078433" green="0.16470588235294117" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="overlayLevelTwoBackground">
+            <color red="0.11372549019607843" green="0.13333333333333333" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

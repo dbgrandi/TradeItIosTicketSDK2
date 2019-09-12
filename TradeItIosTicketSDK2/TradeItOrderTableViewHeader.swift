@@ -11,7 +11,7 @@ class TradeItOrderTableViewHeader: UITableViewCell {
     }
     
     func populate(title: String, titleDate: String, isCancelable: Bool = false) {
-        self.contentView.backgroundColor = UIColor.tradeItlightGreyHeaderBackgroundColor
+        self.contentView.backgroundColor = UIColor(named: "overlayLevelOneBackground")!
         self.titleLabel?.text = title.uppercased()
         self.titleDateLabel?.text = titleDate
         if isCancelable {

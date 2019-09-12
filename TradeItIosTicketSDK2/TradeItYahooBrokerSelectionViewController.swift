@@ -16,6 +16,7 @@ class TradeItYahooBrokerSelectionViewController: TradeItYahooViewController, UIT
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(named: "overlayLevelTwoBackground")!
 
         precondition(self.oAuthCallbackUrl != nil, "TradeItSDK ERROR: TradeItYahooBrokerSelectionViewController loaded without setting oAuthCallbackUrl!")
 
@@ -156,22 +157,23 @@ class TradeItYahooBrokerSelectionViewController: TradeItYahooViewController, UIT
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableCell(withIdentifier: "TRADE_IT_YAHOO_BROKER_SELECTION_HEADER_CELL_ID") ?? UITableViewCell()
-        if self.featuredBrokers.isEmpty {
-            header.textLabel?.text = "AVAILABLE BROKERS"
-        } else {
-            switch section {
-            case 0:
-                header.textLabel?.text = "SPONSORED BROKERS"
-            case 1:
-                header.textLabel?.text = "ALL BROKERS"
-            default:
-                print("=====> TradeIt ERROR: More than 2 table sections in Broker Selection screen")
-                return nil
-            }
-        }
-
-        return header
+        return nil
+//        let header = tableView.dequeueReusableCell(withIdentifier: "TRADE_IT_YAHOO_BROKER_SELECTION_HEADER_CELL_ID") ?? UITableViewCell()
+//        if self.featuredBrokers.isEmpty {
+//            header.textLabel?.text = "AVAILABLE BROKERS"
+//        } else {
+//            switch section {
+//            case 0:
+//                header.textLabel?.text = "SPONSORED BROKERS"
+//            case 1:
+//                header.textLabel?.text = "ALL BROKERS"
+//            default:
+//                print("=====> TradeIt ERROR: More than 2 table sections in Broker Selection screen")
+//                return nil
+//            }
+//        }
+//
+//        return header
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

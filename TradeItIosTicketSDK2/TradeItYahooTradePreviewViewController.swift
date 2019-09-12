@@ -33,7 +33,7 @@ class TradeItYahooTradePreviewViewController:
 
         self.title = "Preview order"
         self.statusLabel.text = "Order details"
-        self.statusLabel.textColor = UIColor.yahooTextColor
+        self.statusLabel.textColor = UIColor(named: "primaryText")
         self.actionButton.setTitle(self.actionButtonTitleTextSubmitOrder, for: .normal)
 
         self.orderDetailsTable.dataSource = self.dataSource
@@ -90,7 +90,7 @@ class TradeItYahooTradePreviewViewController:
                         self.title = "Order confirmation"
 
                         self.statusLabel.text = "✓ Order submitted"
-                        self.statusLabel.textColor = UIColor.yahooGreenSuccessColor
+                        self.statusLabel.textColor = UIColor(named: "positive")
 
                         self.actionButton.enable()
                         self.actionButton.setTitle(self.actionButtonTitleTextGoToOrders, for: .normal)

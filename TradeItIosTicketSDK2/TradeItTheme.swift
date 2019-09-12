@@ -1,21 +1,21 @@
 import UIKit
 
 @objc public class TradeItTheme: NSObject {
-    @objc public var textColor: UIColor = UIColor.darkText
-    @objc public var warningTextColor: UIColor = UIColor.tradeItSellRedColor
+    @objc public var textColor: UIColor = UIColor(named: "primaryText")!
+    @objc public var warningTextColor: UIColor = UIColor(named: "negative")!
 
-    @objc public var backgroundColor: UIColor = UIColor.white
+    @objc public var backgroundColor: UIColor = UIColor(named: "overlayLevelTwoBackground")!
 
-    @objc public var tableHeaderBackgroundColor: UIColor = UIColor(red: 0.94, green: 0.94, blue: 0.96, alpha: 1.0)
-    @objc public var tableHeaderTextColor: UIColor = UIColor(red: 0.49, green: 0.49, blue: 0.51, alpha: 1.0)
-    @objc public var tableBackgroundPrimaryColor: UIColor = UIColor.white
-    @objc public var tableBackgroundSecondaryColor: UIColor = UIColor.groupTableViewBackground
+    @objc public var tableHeaderBackgroundColor: UIColor = UIColor(named: "overlayLevelTwoBackground")!
+    @objc public var tableHeaderTextColor: UIColor = UIColor(named: "primaryText")!
+    @objc public var tableBackgroundPrimaryColor: UIColor = UIColor(named: "primaryText")!
+    @objc public var tableBackgroundSecondaryColor: UIColor = UIColor(named: "overlayLevelTwoBackground")!
 
-    @objc public var interactivePrimaryColor: UIColor = UIButton().tintColor
-    @objc public var interactiveSecondaryColor: UIColor = UIColor.white
+    @objc public var interactivePrimaryColor: UIColor = UIColor(named: "button")!
+    @objc public var interactiveSecondaryColor: UIColor = UIColor(named: "button")!
 
-    @objc public var warningPrimaryColor: UIColor = UIColor.tradeItDeepRoseColor
-    @objc public var warningSecondaryColor: UIColor = UIColor.white
+    @objc public var warningPrimaryColor: UIColor = UIColor(named: "negative")!
+    @objc public var warningSecondaryColor: UIColor = UIColor(named: "primaryText")!
 
     @objc override public init() {
         super.init()

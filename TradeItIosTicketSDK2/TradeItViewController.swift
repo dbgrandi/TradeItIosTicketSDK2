@@ -18,7 +18,7 @@ class TradeItViewController: CloseableViewController {
         // Add a white background behind everything below the navigation bar.
         // The clear background above would show previous VCs when transitions are happening otherwise.
         let containerView = UIView()
-        containerView.backgroundColor = .white
+        containerView.backgroundColor = UIColor(named: "overlayLevelTwoBackground")!
         containerView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(containerView)
         self.view.sendSubviewToBack(containerView)
