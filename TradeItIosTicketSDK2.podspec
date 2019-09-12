@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
 
   s.resource_bundles = {
     'TradeItIosTicketSDK2' => [
-      'TradeItIosTicketSDK2/**/*.{storyboard,xib,png}'
+      'TradeItIosTicketSDK2/**/*.{storyboard,xib,png,xcassets}'
     ]
   }
 
