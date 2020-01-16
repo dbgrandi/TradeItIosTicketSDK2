@@ -1,6 +1,7 @@
 import UIKit
 import MBProgressHUD
 import SafariServices
+import AuthenticationServices
 
 @objc class TradeItYahooLinkBrokerUIFlow: NSObject, LinkBrokerUIFlow {
     let viewControllerProvider = TradeItViewControllerProvider(storyboardName: "TradeItYahoo")
@@ -14,6 +15,8 @@ import SafariServices
     var oAuthCallbackUrl: URL?
 
     weak var delegate: YahooLauncherDelegate?
+
+    private var webAuthSession: ASWebAuthenticationSession? = nil
 
     override internal init() {
         super.init()
@@ -76,7 +79,7 @@ import SafariServices
 
         brokerSelectionViewController.oAuthCallbackUrl = oAuthCallbackUrl
         brokerSelectionViewController.delegate = self.delegate
-        
+
         navController.pushViewController(brokerSelectionViewController, animated: false)
         viewController.present(navController, animated: true, completion: nil)
     }
@@ -93,15 +96,31 @@ import SafariServices
         TradeItSDK.linkedBrokerManager.getOAuthLoginPopupForTokenUpdateUrl(
             forLinkedBroker: linkedBroker,
             oAuthCallbackUrl: oAuthCallbackUrl,
-            onSuccess: { url in
-                activityView.hide(animated: true)
-                let safariViewController = SFSafariViewController(url: url)
-                viewController.present(safariViewController, animated: true, completion: nil)
+            onSuccess: { [weak self] url in
+                if let self = self {
+                    self.webAuthSession = ASWebAuthenticationSession.init(url: url, callbackURLScheme: oAuthCallbackUrl.absoluteString, completionHandler: { (callBack:URL?, error:Error?) in
+                        guard error == nil, let successURL = callBack else { return }
+                        NotificationCenter.default.post(name: TradeItNotification.Name.didReceiveOAuthCallback, object: nil, userInfo: [TradeItNotification.UserInfoKey.callbackUrl.rawValue: successURL])
+                    })
+
+                    if #available(iOS 13.0, *) {
+                        self.webAuthSession?.presentationContextProvider = self
+                    }
+                    self.webAuthSession?.start()
+                    activityView.hide(animated: true)
+                }
             },
             onFailure: { errorResult in
                 self.alertManager.showError(errorResult, onViewController: viewController)
                 activityView.hide(animated: true)
             }
         )
+    }
+}
+
+extension TradeItYahooLinkBrokerUIFlow: ASWebAuthenticationPresentationContextProviding {
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+
+        return UIApplication.shared.windows.first ?? UIWindow()
     }
 }
