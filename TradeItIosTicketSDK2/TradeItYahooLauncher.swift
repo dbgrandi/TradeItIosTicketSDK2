@@ -16,7 +16,7 @@ import SafariServices
     private let cryptoTradingUIFlow = TradeItYahooCryptoTradingUIFlow()
     private let oAuthCompletionUIFlow = TradeItYahooOAuthCompletionUIFlow()
     private let linkBrokerUIFlow = TradeItYahooLinkBrokerUIFlow()
-    private let alertManager = TradeItAlertManager()
+    private let alertManager = TradeItAlertManager(linkBrokerUIFlow: TradeItYahooLinkBrokerUIFlow())
 
     weak var delegate: YahooLauncherDelegate?
 
